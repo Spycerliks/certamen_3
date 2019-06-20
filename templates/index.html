@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>CERTAMEN 3</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="css/estilo.css">
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<!-- Script JS -->
+	<script src="js/funciones.js"></script>
+</head>
+<body>
+	<div class="container">
+		<h2>USUARIOS</h2>
+
+		<table>
+			<tr>
+				<td>Id</td>
+				<td> <input type="text" id="id"> </td>
+			</tr>
+			<tr>
+				<td>Usuario</td>
+				<td> <input type="text" id="username"> </td>
+			</tr>
+			<tr>
+				<td>Password</td>
+				<td> <input type="text" id="password"> </td>
+			</tr>
+			<tr>
+				<td>Carrera</td>
+				<td><select id="alumno">
+					{% for alumno in alumnnos %}
+						<option value='{{alumno["id"]}}'> {{alumno["carrera"]}} </option>
+					{% endfor %}
+				</select></td>
+			</tr>
+		</table>
+		<br><br><br>
+		<input type="button" id="agregar" value="Agregar">
+		<input type="button" id="modificar" value="Modificar">
+		<input type="button" id="eliminar" value="Eliminar">
+		<br><br><br>
+		<div id="dvdetalle">
+		<table>
+			<tr>
+				<td>ID</td>
+				<td>Nombre completo</td>
+				<td>Usuario</td>
+				<td>Password</td>
+			</tr>
+			{% for usuario in usuarios %}
+				<tr>
+					<td> {{usuario["id"]}} </td>
+					<td> {{usuario["nombre"]}} {{usuario["apellido"]}} </td>
+					<td> {{usuario["username"]}} </td>
+					<td> {{usuario["pass"]}} </td>
+				</tr>
+			{% endfor %}
+		</table>
+		</div>
+	</div>
+</body>	
+</html>
