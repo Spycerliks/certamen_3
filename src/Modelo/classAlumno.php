@@ -1,7 +1,7 @@
 <?php
 namespace Modelo;
 
-class classAlumno {
+class classAlumno extends classUsuario {
 
 	protected $database;
 
@@ -11,8 +11,28 @@ class classAlumno {
 	}
 
 	public function datos(){
-		$arr = $this->database->select('alumno', ['rut','carrera','id_usuario']);
+		$arr = $this->database->select('alumno', ["[><]usuario" =>["id_usuario"=>"id"]],
+		['alumno.rut','alumno.carrera','alumno.id_usuario',
+		'usuario.id','usuario.nombre','usuario.apellido','usuario.username','usuario.pass']);
+
 		return $arr;
 	}
-	
+
+	public function agregar($rut, $carrera, $id, $nombre, $apellido, $username, $pass) {
+		parent::agregar($id, $nombre, $apellido, $username, $pass);
+
+		$this->database->insert("alumno",["rut"=>$rut,"carrera"=>$carrera,"id_usuario"=>"$id"]);
+	}
+
+	public function	modificar($rut, $carrera, $id, $nombre, $apellido, $username, $pass) {
+		parent::modificar($id, $nombre, $apellido, $username, $pass);
+
+		$data = $this->database->update("alumno",["carrera"=>$carrera],["rut"=>$rut]);
+		return $data;
+	}
+
+	public function eliminar($rut, $id) {
+		parent::eliminar($id);
+		$this->database->delete("alumno", [ "AND" => [ "rut" => $rut ] ]);
+	}
 }

@@ -11,30 +11,25 @@ use Medoo\Medoo;
 
 return function (App $app) {
 
-	$app->get('/', function (Request $request, Response $response) use ($container) {
-		return $container->get('renderer')->render($response, 'radiograma.phtml');
-	});
-
-	$app->get('/usuarios', function ($request, $response) {
-		$db = new \Modelo\clUsuario($this);
-		$dbp = new \Modelo\clPerfil($this);
+	$app->get('/', function ($request, $response) {
+		$db = new \Modelo\classUsuario($this);
+		$dbp = new \Modelo\classAlumno($this);
 		return $this->view->render($response, 'index.html', 
-			['usuarios'=>$db->datos(),'perfiles'=>$dbp->datos()]);
+			['usuarios'=>$db->datos(),'alumnos'=>$dbp->datos()]);
 	});
 
 	$app->post('/actusuario', function ($request, $response) {
 		$op=$_POST["operacion"];
-		$db = new \Modelo\clUsuario($this);
+		$db = new \Modelo\classAlumno($this);
 		if ($op=="grabar") {
-			$db->agregar($_POST["codigo"],$_POST["usuario"],$_POST["pass"]);
+			$db->agregar($_POST["rut"],$_POST["carrera"],$_POST["codigo"],$_POST["nombre"],$_POST["apellido"],$_POST["usuario"],$_POST["pass"]);
 		}
 		if ($op=="modificar") {
-			$db->modificar($_POST["codigo"],$_POST["usuario"],$_POST["pass"]);
+			$db->modificar($_POST["rut"],$_POST["carrera"],$_POST["codigo"],$_POST["nombre"],$_POST["apellido"],$_POST["usuario"],$_POST["pass"]);
 		}
 		if ($op=="eliminar") {
-			$db->eliminar($_POST["codigo"]);
+			$db->eliminar($_POST["rut"],$_POST["codigo"]);
 		}
-		return $this->view->render($response, 'usuarios_detalle.html',['usuarios'=>$db->datos()]);
+		return $this->view->render($response, 'alumnos_detalle.html',['alumnos'=>$db->datos()]);
 	});
-
 };

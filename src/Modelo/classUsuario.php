@@ -11,7 +11,7 @@ class classUsuario {
 	}
 
 	public function datos(){
-		$arr = $this->database->select('usuario', ['id','nombre','apellido','usermane','pass']);
+		$arr = $this->database->select('usuario', ['id','nombre','apellido','username','pass']);
 		return $arr;
 	}
 
@@ -32,5 +32,4 @@ class classUsuario {
 	public function eliminar($id) {
 		$this->database->delete("usuario", [ "AND" => [ "id" => $id ] ]);
 	}
-
 }

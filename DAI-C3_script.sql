@@ -11,13 +11,11 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- Drop Schema dai-c3
 -- -----------------------------------------------------
 DROP SCHEMA IF EXISTS `dai-c3` ;
-
 -- -----------------------------------------------------
 -- Create Schema dai-c3
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `dai-c3` DEFAULT CHARACTER SET utf8 ;
 USE `dai-c3` ;
-
 -- -----------------------------------------------------
 -- Table `dai-c3`.`usuario`
 -- -----------------------------------------------------
@@ -31,7 +29,6 @@ CREATE TABLE IF NOT EXISTS `dai-c3`.`usuario` (
   `pass` VARCHAR(15) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
-
 -- -----------------------------------------------------
 -- Table `dai-c3`.`alumno`
 -- -----------------------------------------------------
@@ -49,6 +46,22 @@ CREATE TABLE IF NOT EXISTS `dai-c3`.`alumno` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- INSERT `dai-c3`.`usuario`
+-- -----------------------------------------------------
+INSERT INTO `usuario` VALUES
+(1,"Matías","Barrenehea","mb.duoc","mb1995"),
+(2,"Iván","Torres","it.duoc","ivan1"),
+(3,"Mateo","Campos","mc.duoc","camposduoc");
+
+-- -----------------------------------------------------
+-- INSERT `dai-c3`.`alumno`
+-- -----------------------------------------------------
+INSERT INTO `alumno` VALUES
+("19120725-4","Ingeniería Informática",1),
+("18543366-K","Diseñador Industrial",2),
+("20419874-0","Publicidad",3);
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
